@@ -468,7 +468,7 @@ function generateDecode(ctx, fullName, messageDesc) {
         // get a generic 'reader.doSomething' bit that is specific to the basic type
         let readSnippet;
         if (types_1.isPrimitive(field)) {
-            readSnippet = ts_poet_1.code `reader.${types_1.toReaderCall(ctx, field)}()`;
+            readSnippet = ts_poet_1.code `reader.${types_1.toReaderCall(field)}()`;
             if (types_1.isBytes(field)) {
                 if (options.env === options_1.EnvOption.NODE) {
                     readSnippet = ts_poet_1.code `${readSnippet} as Buffer`;
@@ -580,11 +580,11 @@ function generateEncode(ctx, fullName, messageDesc) {
         if (types_1.isEnum(field) && options.stringEnums) {
             const tag = ((field.number << 3) | types_1.basicWireType(field.type)) >>> 0;
             const toNumber = types_1.getEnumMethod(typeMap, field.typeName, 'ToNumber');
-            writeSnippet = (place) => ts_poet_1.code `writer.uint32(${tag}).${types_1.toReaderCall(ctx, field)}(${toNumber}(${place}))`;
+            writeSnippet = (place) => ts_poet_1.code `writer.uint32(${tag}).${types_1.toReaderCall(field)}(${toNumber}(${place}))`;
         }
         else if (types_1.isScalar(field) || types_1.isEnum(field)) {
             const tag = ((field.number << 3) | types_1.basicWireType(field.type)) >>> 0;
-            writeSnippet = (place) => ts_poet_1.code `writer.uint32(${tag}).${types_1.toReaderCall(ctx, field)}(${place})`;
+            writeSnippet = (place) => ts_poet_1.code `writer.uint32(${tag}).${types_1.toReaderCall(field)}(${place})`;
         }
         else if (types_1.isTimestamp(field) && (options.useDate === options_1.DateOption.DATE || options.useDate === options_1.DateOption.STRING)) {
             const tag = ((field.number << 3) | 2) >>> 0;
@@ -621,12 +621,23 @@ function generateEncode(ctx, fullName, messageDesc) {
           }
         `);
             }
+            else if (types_1.isEnum(field) && options.stringEnums) {
+                const tag = ((field.number << 3) | types_1.basicWireType(field.type)) >>> 0;
+                const toNumber = types_1.getEnumMethod(typeMap, field.typeName, 'ToNumber');
+                chunks.push(ts_poet_1.code `
+          writer.uint32(${tag}).fork();
+          for (const v of message.${fieldName}) {
+            writer.${types_1.toReaderCall(field)}(${toNumber}(v));
+          }
+          writer.ldelim();
+        `);
+            }
             else {
                 const tag = ((field.number << 3) | 2) >>> 0;
                 chunks.push(ts_poet_1.code `
           writer.uint32(${tag}).fork();
           for (const v of message.${fieldName}) {
-            writer.${types_1.toReaderCall(ctx, field)}(v);
+            writer.${types_1.toReaderCall(field)}(v);
           }
           writer.ldelim();
         `);

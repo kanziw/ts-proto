@@ -93,7 +93,7 @@ function basicTypeName(ctx, field, typeOptions = {}) {
 }
 exports.basicTypeName = basicTypeName;
 /** Returns the Reader method for the primitive's read/write call. */
-function toReaderCall(ctx, field) {
+function toReaderCall(field) {
     switch (field.type) {
         case ts_proto_descriptors_1.FieldDescriptorProto_Type.TYPE_DOUBLE:
             return 'double';
@@ -101,7 +101,7 @@ function toReaderCall(ctx, field) {
             return 'float';
         case ts_proto_descriptors_1.FieldDescriptorProto_Type.TYPE_INT32:
         case ts_proto_descriptors_1.FieldDescriptorProto_Type.TYPE_ENUM:
-            return ctx.options.stringEnums ? 'string' : 'int32';
+            return 'int32';
         case ts_proto_descriptors_1.FieldDescriptorProto_Type.TYPE_UINT32:
             return 'uint32';
         case ts_proto_descriptors_1.FieldDescriptorProto_Type.TYPE_SINT32:
