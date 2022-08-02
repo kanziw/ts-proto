@@ -1,0 +1,62 @@
+version: v1
+plugins:
+  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.1-0
+    out: gen/snake-case-false
+    opt:
+      - forceLong=string
+      - esModuleInterop=true
+      - useOptionals=messages
+      - outputEncodeMethods=false
+      - outputJsonMethods=true
+      - outputPartialMethods=true
+      - stringEnums=true
+      - outputClientImpl=false
+      - useDate=false
+      - outputServices=none
+      - unrecognizedEnum=false
+      - snakeToCamel=false
+  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.1-0
+    out: gen/snake-case-keys
+    opt:
+      - forceLong=string
+      - esModuleInterop=true
+      - useOptionals=messages
+      - outputEncodeMethods=false
+      - outputJsonMethods=true
+      - outputPartialMethods=true
+      - stringEnums=true
+      - outputClientImpl=false
+      - useDate=false
+      - outputServices=none
+      - unrecognizedEnum=false
+      - snakeToCamel=keys
+  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.1-0
+    out: gen/snake-case-json
+    opt:
+      - forceLong=string
+      - esModuleInterop=true
+      - useOptionals=messages
+      - outputEncodeMethods=false
+      - outputJsonMethods=true
+      - outputPartialMethods=true
+      - stringEnums=true
+      - outputClientImpl=false
+      - useDate=false
+      - outputServices=none
+      - unrecognizedEnum=false
+      - snakeToCamel=json
+  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.1-0
+    out: gen/snake-case-json-keys
+    opt:
+      - forceLong=string
+      - esModuleInterop=true
+      - useOptionals=messages
+      - outputEncodeMethods=false
+      - outputJsonMethods=true
+      - outputPartialMethods=true
+      - stringEnums=true
+      - outputClientImpl=false
+      - useDate=false
+      - outputServices=none
+      - unrecognizedEnum=false
+      - snakeToCamel=json,keys
