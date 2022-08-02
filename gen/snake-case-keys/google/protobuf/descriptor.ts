@@ -1171,15 +1171,6 @@ export const FileDescriptorSet = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<FileDescriptorSet>, I>>(
-    object: I
-  ): FileDescriptorSet {
-    const message = createBaseFileDescriptorSet();
-    message.file =
-      object.file?.map((e) => FileDescriptorProto.fromPartial(e)) || [];
-    return message;
-  },
 };
 
 function createBaseFileDescriptorProto(): FileDescriptorProto {
@@ -1294,35 +1285,6 @@ export const FileDescriptorProto = {
         : undefined);
     message.syntax !== undefined && (obj.syntax = message.syntax);
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<FileDescriptorProto>, I>>(
-    object: I
-  ): FileDescriptorProto {
-    const message = createBaseFileDescriptorProto();
-    message.name = object.name ?? "";
-    message.package = object.package ?? "";
-    message.dependency = object.dependency?.map((e) => e) || [];
-    message.publicDependency = object.publicDependency?.map((e) => e) || [];
-    message.weakDependency = object.weakDependency?.map((e) => e) || [];
-    message.messageType =
-      object.messageType?.map((e) => DescriptorProto.fromPartial(e)) || [];
-    message.enumType =
-      object.enumType?.map((e) => EnumDescriptorProto.fromPartial(e)) || [];
-    message.service =
-      object.service?.map((e) => ServiceDescriptorProto.fromPartial(e)) || [];
-    message.extension =
-      object.extension?.map((e) => FieldDescriptorProto.fromPartial(e)) || [];
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? FileOptions.fromPartial(object.options)
-        : undefined;
-    message.sourceCodeInfo =
-      object.sourceCodeInfo !== undefined && object.sourceCodeInfo !== null
-        ? SourceCodeInfo.fromPartial(object.sourceCodeInfo)
-        : undefined;
-    message.syntax = object.syntax ?? "";
-    return message;
   },
 };
 
@@ -1442,37 +1404,6 @@ export const DescriptorProto = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<DescriptorProto>, I>>(
-    object: I
-  ): DescriptorProto {
-    const message = createBaseDescriptorProto();
-    message.name = object.name ?? "";
-    message.field =
-      object.field?.map((e) => FieldDescriptorProto.fromPartial(e)) || [];
-    message.extension =
-      object.extension?.map((e) => FieldDescriptorProto.fromPartial(e)) || [];
-    message.nestedType =
-      object.nestedType?.map((e) => DescriptorProto.fromPartial(e)) || [];
-    message.enumType =
-      object.enumType?.map((e) => EnumDescriptorProto.fromPartial(e)) || [];
-    message.extensionRange =
-      object.extensionRange?.map((e) =>
-        DescriptorProto_ExtensionRange.fromPartial(e)
-      ) || [];
-    message.oneofDecl =
-      object.oneofDecl?.map((e) => OneofDescriptorProto.fromPartial(e)) || [];
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? MessageOptions.fromPartial(object.options)
-        : undefined;
-    message.reservedRange =
-      object.reservedRange?.map((e) =>
-        DescriptorProto_ReservedRange.fromPartial(e)
-      ) || [];
-    message.reservedName = object.reservedName?.map((e) => e) || [];
-    return message;
-  },
 };
 
 function createBaseDescriptorProto_ExtensionRange(): DescriptorProto_ExtensionRange {
@@ -1500,19 +1431,6 @@ export const DescriptorProto_ExtensionRange = {
         : undefined);
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<DescriptorProto_ExtensionRange>, I>>(
-    object: I
-  ): DescriptorProto_ExtensionRange {
-    const message = createBaseDescriptorProto_ExtensionRange();
-    message.start = object.start ?? 0;
-    message.end = object.end ?? 0;
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? ExtensionRangeOptions.fromPartial(object.options)
-        : undefined;
-    return message;
-  },
 };
 
 function createBaseDescriptorProto_ReservedRange(): DescriptorProto_ReservedRange {
@@ -1532,15 +1450,6 @@ export const DescriptorProto_ReservedRange = {
     message.start !== undefined && (obj.start = Math.round(message.start));
     message.end !== undefined && (obj.end = Math.round(message.end));
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<DescriptorProto_ReservedRange>, I>>(
-    object: I
-  ): DescriptorProto_ReservedRange {
-    const message = createBaseDescriptorProto_ReservedRange();
-    message.start = object.start ?? 0;
-    message.end = object.end ?? 0;
-    return message;
   },
 };
 
@@ -1569,17 +1478,6 @@ export const ExtensionRangeOptions = {
       obj.uninterpreted_option = [];
     }
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<ExtensionRangeOptions>, I>>(
-    object: I
-  ): ExtensionRangeOptions {
-    const message = createBaseExtensionRangeOptions();
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
   },
 };
 
@@ -1649,27 +1547,6 @@ export const FieldDescriptorProto = {
       (obj.proto3_optional = message.proto3Optional);
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<FieldDescriptorProto>, I>>(
-    object: I
-  ): FieldDescriptorProto {
-    const message = createBaseFieldDescriptorProto();
-    message.name = object.name ?? "";
-    message.number = object.number ?? 0;
-    message.label = object.label ?? FieldDescriptorProto_Label.LABEL_OPTIONAL;
-    message.type = object.type ?? FieldDescriptorProto_Type.TYPE_DOUBLE;
-    message.typeName = object.typeName ?? "";
-    message.extendee = object.extendee ?? "";
-    message.defaultValue = object.defaultValue ?? "";
-    message.oneofIndex = object.oneofIndex ?? 0;
-    message.jsonName = object.jsonName ?? "";
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? FieldOptions.fromPartial(object.options)
-        : undefined;
-    message.proto3Optional = object.proto3Optional ?? false;
-    return message;
-  },
 };
 
 function createBaseOneofDescriptorProto(): OneofDescriptorProto {
@@ -1694,18 +1571,6 @@ export const OneofDescriptorProto = {
         ? OneofOptions.toJSON(message.options)
         : undefined);
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<OneofDescriptorProto>, I>>(
-    object: I
-  ): OneofDescriptorProto {
-    const message = createBaseOneofDescriptorProto();
-    message.name = object.name ?? "";
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? OneofOptions.fromPartial(object.options)
-        : undefined;
-    return message;
   },
 };
 
@@ -1768,25 +1633,6 @@ export const EnumDescriptorProto = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<EnumDescriptorProto>, I>>(
-    object: I
-  ): EnumDescriptorProto {
-    const message = createBaseEnumDescriptorProto();
-    message.name = object.name ?? "";
-    message.value =
-      object.value?.map((e) => EnumValueDescriptorProto.fromPartial(e)) || [];
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? EnumOptions.fromPartial(object.options)
-        : undefined;
-    message.reservedRange =
-      object.reservedRange?.map((e) =>
-        EnumDescriptorProto_EnumReservedRange.fromPartial(e)
-      ) || [];
-    message.reservedName = object.reservedName?.map((e) => e) || [];
-    return message;
-  },
 };
 
 function createBaseEnumDescriptorProto_EnumReservedRange(): EnumDescriptorProto_EnumReservedRange {
@@ -1806,15 +1652,6 @@ export const EnumDescriptorProto_EnumReservedRange = {
     message.start !== undefined && (obj.start = Math.round(message.start));
     message.end !== undefined && (obj.end = Math.round(message.end));
     return obj;
-  },
-
-  fromPartial<
-    I extends Exact<DeepPartial<EnumDescriptorProto_EnumReservedRange>, I>
-  >(object: I): EnumDescriptorProto_EnumReservedRange {
-    const message = createBaseEnumDescriptorProto_EnumReservedRange();
-    message.start = object.start ?? 0;
-    message.end = object.end ?? 0;
-    return message;
   },
 };
 
@@ -1842,19 +1679,6 @@ export const EnumValueDescriptorProto = {
         ? EnumValueOptions.toJSON(message.options)
         : undefined);
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<EnumValueDescriptorProto>, I>>(
-    object: I
-  ): EnumValueDescriptorProto {
-    const message = createBaseEnumValueDescriptorProto();
-    message.name = object.name ?? "";
-    message.number = object.number ?? 0;
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? EnumValueOptions.fromPartial(object.options)
-        : undefined;
-    return message;
   },
 };
 
@@ -1890,20 +1714,6 @@ export const ServiceDescriptorProto = {
         ? ServiceOptions.toJSON(message.options)
         : undefined);
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<ServiceDescriptorProto>, I>>(
-    object: I
-  ): ServiceDescriptorProto {
-    const message = createBaseServiceDescriptorProto();
-    message.name = object.name ?? "";
-    message.method =
-      object.method?.map((e) => MethodDescriptorProto.fromPartial(e)) || [];
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? ServiceOptions.fromPartial(object.options)
-        : undefined;
-    return message;
   },
 };
 
@@ -1950,22 +1760,6 @@ export const MethodDescriptorProto = {
     message.serverStreaming !== undefined &&
       (obj.server_streaming = message.serverStreaming);
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MethodDescriptorProto>, I>>(
-    object: I
-  ): MethodDescriptorProto {
-    const message = createBaseMethodDescriptorProto();
-    message.name = object.name ?? "";
-    message.inputType = object.inputType ?? "";
-    message.outputType = object.outputType ?? "";
-    message.options =
-      object.options !== undefined && object.options !== null
-        ? MethodOptions.fromPartial(object.options)
-        : undefined;
-    message.clientStreaming = object.clientStreaming ?? false;
-    message.serverStreaming = object.serverStreaming ?? false;
-    return message;
   },
 };
 
@@ -2111,38 +1905,6 @@ export const FileOptions = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<FileOptions>, I>>(
-    object: I
-  ): FileOptions {
-    const message = createBaseFileOptions();
-    message.javaPackage = object.javaPackage ?? "";
-    message.javaOuterClassname = object.javaOuterClassname ?? "";
-    message.javaMultipleFiles = object.javaMultipleFiles ?? false;
-    message.javaGenerateEqualsAndHash =
-      object.javaGenerateEqualsAndHash ?? false;
-    message.javaStringCheckUtf8 = object.javaStringCheckUtf8 ?? false;
-    message.optimizeFor = object.optimizeFor ?? FileOptions_OptimizeMode.SPEED;
-    message.goPackage = object.goPackage ?? "";
-    message.ccGenericServices = object.ccGenericServices ?? false;
-    message.javaGenericServices = object.javaGenericServices ?? false;
-    message.pyGenericServices = object.pyGenericServices ?? false;
-    message.phpGenericServices = object.phpGenericServices ?? false;
-    message.deprecated = object.deprecated ?? false;
-    message.ccEnableArenas = object.ccEnableArenas ?? false;
-    message.objcClassPrefix = object.objcClassPrefix ?? "";
-    message.csharpNamespace = object.csharpNamespace ?? "";
-    message.swiftPrefix = object.swiftPrefix ?? "";
-    message.phpClassPrefix = object.phpClassPrefix ?? "";
-    message.phpNamespace = object.phpNamespace ?? "";
-    message.phpMetadataNamespace = object.phpMetadataNamespace ?? "";
-    message.rubyPackage = object.rubyPackage ?? "";
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
-  },
 };
 
 function createBaseMessageOptions(): MessageOptions {
@@ -2193,22 +1955,6 @@ export const MessageOptions = {
       obj.uninterpreted_option = [];
     }
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MessageOptions>, I>>(
-    object: I
-  ): MessageOptions {
-    const message = createBaseMessageOptions();
-    message.messageSetWireFormat = object.messageSetWireFormat ?? false;
-    message.noStandardDescriptorAccessor =
-      object.noStandardDescriptorAccessor ?? false;
-    message.deprecated = object.deprecated ?? false;
-    message.mapEntry = object.mapEntry ?? false;
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
   },
 };
 
@@ -2264,23 +2010,6 @@ export const FieldOptions = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<FieldOptions>, I>>(
-    object: I
-  ): FieldOptions {
-    const message = createBaseFieldOptions();
-    message.ctype = object.ctype ?? FieldOptions_CType.STRING;
-    message.packed = object.packed ?? false;
-    message.jstype = object.jstype ?? FieldOptions_JSType.JS_NORMAL;
-    message.lazy = object.lazy ?? false;
-    message.deprecated = object.deprecated ?? false;
-    message.weak = object.weak ?? false;
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
-  },
 };
 
 function createBaseOneofOptions(): OneofOptions {
@@ -2308,17 +2037,6 @@ export const OneofOptions = {
       obj.uninterpreted_option = [];
     }
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<OneofOptions>, I>>(
-    object: I
-  ): OneofOptions {
-    const message = createBaseOneofOptions();
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
   },
 };
 
@@ -2354,19 +2072,6 @@ export const EnumOptions = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<EnumOptions>, I>>(
-    object: I
-  ): EnumOptions {
-    const message = createBaseEnumOptions();
-    message.allowAlias = object.allowAlias ?? false;
-    message.deprecated = object.deprecated ?? false;
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
-  },
 };
 
 function createBaseEnumValueOptions(): EnumValueOptions {
@@ -2397,18 +2102,6 @@ export const EnumValueOptions = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<EnumValueOptions>, I>>(
-    object: I
-  ): EnumValueOptions {
-    const message = createBaseEnumValueOptions();
-    message.deprecated = object.deprecated ?? false;
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
-  },
 };
 
 function createBaseServiceOptions(): ServiceOptions {
@@ -2438,18 +2131,6 @@ export const ServiceOptions = {
       obj.uninterpreted_option = [];
     }
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<ServiceOptions>, I>>(
-    object: I
-  ): ServiceOptions {
-    const message = createBaseServiceOptions();
-    message.deprecated = object.deprecated ?? false;
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
   },
 };
 
@@ -2491,21 +2172,6 @@ export const MethodOptions = {
       obj.uninterpreted_option = [];
     }
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<MethodOptions>, I>>(
-    object: I
-  ): MethodOptions {
-    const message = createBaseMethodOptions();
-    message.deprecated = object.deprecated ?? false;
-    message.idempotencyLevel =
-      object.idempotencyLevel ??
-      MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN;
-    message.uninterpretedOption =
-      object.uninterpretedOption?.map((e) =>
-        UninterpretedOption.fromPartial(e)
-      ) || [];
-    return message;
   },
 };
 
@@ -2573,22 +2239,6 @@ export const UninterpretedOption = {
       (obj.aggregate_value = message.aggregateValue);
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<UninterpretedOption>, I>>(
-    object: I
-  ): UninterpretedOption {
-    const message = createBaseUninterpretedOption();
-    message.name =
-      object.name?.map((e) => UninterpretedOption_NamePart.fromPartial(e)) ||
-      [];
-    message.identifierValue = object.identifierValue ?? "";
-    message.positiveIntValue = object.positiveIntValue ?? "0";
-    message.negativeIntValue = object.negativeIntValue ?? "0";
-    message.doubleValue = object.doubleValue ?? 0;
-    message.stringValue = object.stringValue ?? new Uint8Array();
-    message.aggregateValue = object.aggregateValue ?? "";
-    return message;
-  },
 };
 
 function createBaseUninterpretedOption_NamePart(): UninterpretedOption_NamePart {
@@ -2611,15 +2261,6 @@ export const UninterpretedOption_NamePart = {
     message.isExtension !== undefined &&
       (obj.is_extension = message.isExtension);
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<UninterpretedOption_NamePart>, I>>(
-    object: I
-  ): UninterpretedOption_NamePart {
-    const message = createBaseUninterpretedOption_NamePart();
-    message.namePart = object.namePart ?? "";
-    message.isExtension = object.isExtension ?? false;
-    return message;
   },
 };
 
@@ -2646,15 +2287,6 @@ export const SourceCodeInfo = {
       obj.location = [];
     }
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<SourceCodeInfo>, I>>(
-    object: I
-  ): SourceCodeInfo {
-    const message = createBaseSourceCodeInfo();
-    message.location =
-      object.location?.map((e) => SourceCodeInfo_Location.fromPartial(e)) || [];
-    return message;
   },
 };
 
@@ -2714,19 +2346,6 @@ export const SourceCodeInfo_Location = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<SourceCodeInfo_Location>, I>>(
-    object: I
-  ): SourceCodeInfo_Location {
-    const message = createBaseSourceCodeInfo_Location();
-    message.path = object.path?.map((e) => e) || [];
-    message.span = object.span?.map((e) => e) || [];
-    message.leadingComments = object.leadingComments ?? "";
-    message.trailingComments = object.trailingComments ?? "";
-    message.leadingDetachedComments =
-      object.leadingDetachedComments?.map((e) => e) || [];
-    return message;
-  },
 };
 
 function createBaseGeneratedCodeInfo(): GeneratedCodeInfo {
@@ -2754,17 +2373,6 @@ export const GeneratedCodeInfo = {
       obj.annotation = [];
     }
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<GeneratedCodeInfo>, I>>(
-    object: I
-  ): GeneratedCodeInfo {
-    const message = createBaseGeneratedCodeInfo();
-    message.annotation =
-      object.annotation?.map((e) =>
-        GeneratedCodeInfo_Annotation.fromPartial(e)
-      ) || [];
-    return message;
   },
 };
 
@@ -2795,17 +2403,6 @@ export const GeneratedCodeInfo_Annotation = {
     message.begin !== undefined && (obj.begin = Math.round(message.begin));
     message.end !== undefined && (obj.end = Math.round(message.end));
     return obj;
-  },
-
-  fromPartial<I extends Exact<DeepPartial<GeneratedCodeInfo_Annotation>, I>>(
-    object: I
-  ): GeneratedCodeInfo_Annotation {
-    const message = createBaseGeneratedCodeInfo_Annotation();
-    message.path = object.path?.map((e) => e) || [];
-    message.sourceFile = object.sourceFile ?? "";
-    message.begin = object.begin ?? 0;
-    message.end = object.end ?? 0;
-    return message;
   },
 };
 
@@ -2842,33 +2439,6 @@ function base64FromBytes(arr: Uint8Array): string {
   });
   return btoa(bin.join(""));
 }
-
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
-
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & Record<
-        Exclude<keyof I, KeysOfUnion<P>>,
-        never
-      >;
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

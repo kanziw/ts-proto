@@ -388,14 +388,6 @@ export const Http = {
         message.fully_decode_reserved_expansion);
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<Http>, I>>(object: I): Http {
-    const message = createBaseHttp();
-    message.rules = object.rules?.map((e) => HttpRule.fromPartial(e)) || [];
-    message.fully_decode_reserved_expansion =
-      object.fully_decode_reserved_expansion ?? false;
-    return message;
-  },
 };
 
 function createBaseHttpRule(): HttpRule {
@@ -459,25 +451,6 @@ export const HttpRule = {
     }
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<HttpRule>, I>>(object: I): HttpRule {
-    const message = createBaseHttpRule();
-    message.selector = object.selector ?? "";
-    message.get = object.get ?? undefined;
-    message.put = object.put ?? undefined;
-    message.post = object.post ?? undefined;
-    message.delete = object.delete ?? undefined;
-    message.patch = object.patch ?? undefined;
-    message.custom =
-      object.custom !== undefined && object.custom !== null
-        ? CustomHttpPattern.fromPartial(object.custom)
-        : undefined;
-    message.body = object.body ?? "";
-    message.response_body = object.response_body ?? "";
-    message.additional_bindings =
-      object.additional_bindings?.map((e) => HttpRule.fromPartial(e)) || [];
-    return message;
-  },
 };
 
 function createBaseCustomHttpPattern(): CustomHttpPattern {
@@ -498,43 +471,7 @@ export const CustomHttpPattern = {
     message.path !== undefined && (obj.path = message.path);
     return obj;
   },
-
-  fromPartial<I extends Exact<DeepPartial<CustomHttpPattern>, I>>(
-    object: I
-  ): CustomHttpPattern {
-    const message = createBaseCustomHttpPattern();
-    message.kind = object.kind ?? "";
-    message.path = object.path ?? "";
-    return message;
-  },
 };
-
-type Builtin =
-  | Date
-  | Function
-  | Uint8Array
-  | string
-  | number
-  | boolean
-  | undefined;
-
-export type DeepPartial<T> = T extends Builtin
-  ? T
-  : T extends Array<infer U>
-  ? Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U>
-  ? ReadonlyArray<DeepPartial<U>>
-  : T extends {}
-  ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin
-  ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & Record<
-        Exclude<keyof I, KeysOfUnion<P>>,
-        never
-      >;
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

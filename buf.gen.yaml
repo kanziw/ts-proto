@@ -8,7 +8,7 @@ plugins:
       - useOptionals=messages
       - outputEncodeMethods=false
       - outputJsonMethods=true
-      - outputPartialMethods=true
+      - outputPartialMethods=false
       - stringEnums=true
       - outputClientImpl=false
       - useDate=false
@@ -23,7 +23,7 @@ plugins:
       - useOptionals=messages
       - outputEncodeMethods=false
       - outputJsonMethods=true
-      - outputPartialMethods=true
+      - outputPartialMethods=false
       - stringEnums=true
       - outputClientImpl=false
       - useDate=false
@@ -38,7 +38,7 @@ plugins:
       - useOptionals=messages
       - outputEncodeMethods=false
       - outputJsonMethods=true
-      - outputPartialMethods=true
+      - outputPartialMethods=false
       - stringEnums=true
       - outputClientImpl=false
       - useDate=false
@@ -53,7 +53,7 @@ plugins:
       - useOptionals=messages
       - outputEncodeMethods=false
       - outputJsonMethods=true
-      - outputPartialMethods=true
+      - outputPartialMethods=false
       - stringEnums=true
       - outputClientImpl=false
       - useDate=false
