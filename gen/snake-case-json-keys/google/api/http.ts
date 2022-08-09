@@ -21,7 +21,7 @@ export interface Http {
    * The default behavior is to not decode RFC 6570 reserved characters in multi
    * segment matches.
    */
-  fully_decode_reserved_expansion: boolean;
+  fullyDecodeReservedExpansion: boolean;
 }
 
 /**
@@ -339,13 +339,13 @@ export interface HttpRule {
    * NOTE: The referred field must be present at the top-level of the response
    * message type.
    */
-  response_body: string;
+  responseBody: string;
   /**
    * Additional HTTP bindings for the selector. Nested bindings must
    * not contain an `additional_bindings` field themselves (that is,
    * the nesting may only be one level deep).
    */
-  additional_bindings: HttpRule[];
+  additionalBindings: HttpRule[];
 }
 
 /** A custom pattern is used for defining custom HTTP verb. */
@@ -357,7 +357,7 @@ export interface CustomHttpPattern {
 }
 
 function createBaseHttp(): Http {
-  return { rules: [], fully_decode_reserved_expansion: false };
+  return { rules: [], fullyDecodeReservedExpansion: false };
 }
 
 export const Http = {
@@ -366,9 +366,7 @@ export const Http = {
       rules: Array.isArray(object?.rules)
         ? object.rules.map((e: any) => HttpRule.fromJSON(e))
         : [],
-      fully_decode_reserved_expansion: isSet(
-        object.fullyDecodeReservedExpansion
-      )
+      fullyDecodeReservedExpansion: isSet(object.fullyDecodeReservedExpansion)
         ? Boolean(object.fullyDecodeReservedExpansion)
         : false,
     };
@@ -383,9 +381,8 @@ export const Http = {
     } else {
       obj.rules = [];
     }
-    message.fully_decode_reserved_expansion !== undefined &&
-      (obj.fullyDecodeReservedExpansion =
-        message.fully_decode_reserved_expansion);
+    message.fullyDecodeReservedExpansion !== undefined &&
+      (obj.fullyDecodeReservedExpansion = message.fullyDecodeReservedExpansion);
     return obj;
   },
 };
@@ -400,8 +397,8 @@ function createBaseHttpRule(): HttpRule {
     patch: undefined,
     custom: undefined,
     body: "",
-    response_body: "",
-    additional_bindings: [],
+    responseBody: "",
+    additionalBindings: [],
   };
 }
 
@@ -418,10 +415,10 @@ export const HttpRule = {
         ? CustomHttpPattern.fromJSON(object.custom)
         : undefined,
       body: isSet(object.body) ? String(object.body) : "",
-      response_body: isSet(object.responseBody)
+      responseBody: isSet(object.responseBody)
         ? String(object.responseBody)
         : "",
-      additional_bindings: Array.isArray(object?.additionalBindings)
+      additionalBindings: Array.isArray(object?.additionalBindings)
         ? object.additionalBindings.map((e: any) => HttpRule.fromJSON(e))
         : [],
     };
@@ -440,10 +437,10 @@ export const HttpRule = {
         ? CustomHttpPattern.toJSON(message.custom)
         : undefined);
     message.body !== undefined && (obj.body = message.body);
-    message.response_body !== undefined &&
-      (obj.responseBody = message.response_body);
-    if (message.additional_bindings) {
-      obj.additionalBindings = message.additional_bindings.map((e) =>
+    message.responseBody !== undefined &&
+      (obj.responseBody = message.responseBody);
+    if (message.additionalBindings) {
+      obj.additionalBindings = message.additionalBindings.map((e) =>
         e ? HttpRule.toJSON(e) : undefined
       );
     } else {

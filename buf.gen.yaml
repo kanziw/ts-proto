@@ -1,6 +1,6 @@
 version: v1
 plugins:
-  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.1-0
+  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.5-0
     out: gen/snake-case-false
     opt:
       - forceLong=string
@@ -15,7 +15,7 @@ plugins:
       - outputServices=none
       - unrecognizedEnum=false
       - snakeToCamel=false
-  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.1-0
+  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.5-0
     out: gen/snake-case-keys
     opt:
       - forceLong=string
@@ -30,7 +30,7 @@ plugins:
       - outputServices=none
       - unrecognizedEnum=false
       - snakeToCamel=keys
-  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.1-0
+  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.5-0
     out: gen/snake-case-json
     opt:
       - forceLong=string
@@ -45,7 +45,7 @@ plugins:
       - outputServices=none
       - unrecognizedEnum=false
       - snakeToCamel=json
-  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.1-0
+  - remote: buf.build/kanziw/plugins/ts-proto:v1.121.5-0
     out: gen/snake-case-json-keys
     opt:
       - forceLong=string
@@ -59,4 +59,4 @@ plugins:
       - useDate=false
       - outputServices=none
       - unrecognizedEnum=false
-      - snakeToCamel=json,keys
+      - snakeToCamel=keys_json
