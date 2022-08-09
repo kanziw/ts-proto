@@ -4,14 +4,13 @@ export const protobufPackage = "services.echo.v1";
 export interface EchoRequest {
   msg: string;
   long_message: string;
-}
-
-export interface EchoResponse {
   want_to_camel_case: string;
 }
 
+export interface EchoResponse {}
+
 function createBaseEchoRequest(): EchoRequest {
-  return { msg: "", long_message: "" };
+  return { msg: "", long_message: "", want_to_camel_case: "" };
 }
 
 export const EchoRequest = {
@@ -21,6 +20,9 @@ export const EchoRequest = {
       long_message: isSet(object.long_message)
         ? String(object.long_message)
         : "",
+      want_to_camel_case: isSet(object.want_to_camel_case)
+        ? String(object.want_to_camel_case)
+        : "",
     };
   },
 
@@ -29,27 +31,23 @@ export const EchoRequest = {
     message.msg !== undefined && (obj.msg = message.msg);
     message.long_message !== undefined &&
       (obj.long_message = message.long_message);
+    message.want_to_camel_case !== undefined &&
+      (obj.want_to_camel_case = message.want_to_camel_case);
     return obj;
   },
 };
 
 function createBaseEchoResponse(): EchoResponse {
-  return { want_to_camel_case: "" };
+  return {};
 }
 
 export const EchoResponse = {
-  fromJSON(object: any): EchoResponse {
-    return {
-      want_to_camel_case: isSet(object.want_to_camel_case)
-        ? String(object.want_to_camel_case)
-        : "",
-    };
+  fromJSON(_: any): EchoResponse {
+    return {};
   },
 
-  toJSON(message: EchoResponse): unknown {
+  toJSON(_: EchoResponse): unknown {
     const obj: any = {};
-    message.want_to_camel_case !== undefined &&
-      (obj.want_to_camel_case = message.want_to_camel_case);
     return obj;
   },
 };

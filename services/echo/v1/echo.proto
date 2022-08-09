@@ -20,8 +20,7 @@ service EchoService {
 message EchoRequest {
   string msg = 1;
   string long_message = 2 [json_name = "long"];
+  string want_to_camel_case = 3;
 }
 
-message EchoResponse {
-  string want_to_camel_case = 1;
-}
+message EchoResponse {}
