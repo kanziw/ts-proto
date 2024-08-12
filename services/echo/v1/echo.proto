@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package services.echo.v1;
+
+option go_package = "github.com/ohmygrpc/idl/gen/go/services/echov1";
+option java_multiple_files = true;
+option java_outer_classname = "EchoProto";
+option java_package = "com.github.ohmygrpc.idl.services.echo.v1";
+
+import "google/api/annotations.proto";
+
+service EchoService {
+  rpc Echo(EchoRequest) returns (EchoResponse) {
+    option (google.api.http) = {
+      get: "/echo/v1/echo"
+    };
+  }
+}
+
+message EchoRequest {
+  string msg = 1;
+  string long_message = 2 [json_name = "long"];
+  string want_to_camel_case = 3;
+}
+
+message EchoResponse {}
